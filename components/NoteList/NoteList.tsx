@@ -9,7 +9,7 @@ import css from './NoteList.module.css';
 
 interface NoteListProps {
   tag?: string; 
-  
+  notes: Note[];
 }
 
 export default function NoteList({ tag }: NoteListProps) {
