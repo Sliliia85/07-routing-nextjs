@@ -23,7 +23,7 @@ export default function NotesClient() {
   const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
 
   const { data, isLoading, isError } = useQuery({
-    // Переконайся, що ці ключі ідентичні тим, що в app/notes/page.tsx
+   
     queryKey: ['notes', currentPage, debouncedSearchQuery],
     queryFn: () =>
       fetchNotes({
@@ -37,7 +37,7 @@ export default function NotesClient() {
 console.log(data)
   const notes = data?.notes || []; 
   const totalPages = data?.totalPages || 0;
-  // const totalPages = Math.ceil(totalItems / NOTES_PER_PAGE);
+ 
 
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected + 1);
@@ -45,7 +45,7 @@ console.log(data)
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    setCurrentPage(1); // Скидаємо на першу сторінку при пошуку
+    setCurrentPage(1); 
   };
 
   return (
@@ -54,7 +54,7 @@ console.log(data)
         <Toaster position="top-right" />
         
         <header className={css.toolbar}>
-          {/* Додано value={searchQuery}, щоб інпут був контрольованим */}
+         
           <SearchBox onSearch={handleSearch} value={searchQuery} />
           
           {totalPages > 1 && (
