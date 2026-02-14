@@ -13,7 +13,7 @@ export default async function FilterPage({ params }: Props) {
 
   return (
     <section>
-      <NoteList tag={activeTag} />
+      <NoteList tag={activeTag} notes={[]} />
     </section>
   );
 }
