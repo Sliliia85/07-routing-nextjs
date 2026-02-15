@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Manage your notes efficiently',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children, modal }: {children: React.ReactNode;modal?: React.ReactNode;}) {
   return (
     <html lang="en">
       <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
@@ -19,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main style={{ flex: 1 }}>
             {children}
           </main>
+          {modal}
           <Footer />
           <Toaster position="top-right" reverseOrder={false} />
         </TanStackProvider>
