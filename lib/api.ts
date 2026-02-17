@@ -19,28 +19,26 @@ axiosInstance.interceptors.request.use((config) => {
 export interface FetchNotesResponse {
   notes: Note[];
   totalPages: number;
-  page: number;
-  perPage: number;
 }
 
 interface FetchNotesParams {
   page?: number;
   perPage?: number;
   search?: string;
-  tags?: string;
+  tag?: string;
 }
 
 export const fetchNotes = async ({
   page = 1, 
   perPage = 10, 
   search, 
-  tags,
+  tag,
 }: FetchNotesParams): Promise<FetchNotesResponse> => {
   const params = { 
     page, 
     perPage, 
     search: search?.trim() || undefined,
-    tag: tags && tags !== 'all' ? tags : undefined
+    tag: tag && tag !== 'all' ? tag : undefined
   };
   
   const response = await axiosInstance.get<FetchNotesResponse>('/notes', { params });
