@@ -14,26 +14,18 @@ import NoteForm from '@/components/NoteForm/NoteForm';
 import Modal from '@/components/Modal/Modal';
 
 const NOTES_PER_PAGE = 12;
+interface NotesClientProps {
+  activeTag: string;
+}
 
-export default function NotesClient() {
+export default function NotesClient({ activeTag }: NotesClientProps) {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
 
-  const { data, isLoading, isError } = useQuery({
-   
-    queryKey: ['notes', currentPage, debouncedSearchQuery],
-    queryFn: () =>
-      fetchNotes({
-        page: currentPage,
-        perPage: NOTES_PER_PAGE,
-        search: debouncedSearchQuery,
-      }),
-    placeholderData: (previousData) => previousData,
-    staleTime: 5000,
-  });
+ const { data, isLoading, isError } = useQuery({ queryKey: ['notes', activeTag, currentPage, debouncedSearchQuery], queryFn: () => fetchNotes({ page: currentPage, perPage: NOTES_PER_PAGE, search: debouncedSearchQuery, tags: activeTag,  }), placeholderData: (previousData) => previousData, staleTime: 5000, });
 console.log(data)
   const notes = data?.notes || []; 
   const totalPages = data?.totalPages || 0;

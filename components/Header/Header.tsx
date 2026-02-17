@@ -15,7 +15,7 @@ export const Header = () => {
             <Link href="/" className={pathname === '/' ? css.active : ''}>Home</Link>
           </li>
           <li>
-            <Link href="/notes" className={pathname.startsWith('/notes') ? css.active : ''}>Notes</Link>
+            <Link href="/notes/filter/all" className={pathname.startsWith('/notes') ? css.active : ''}>Notes</Link>
           </li>
         </ul>
       </nav>

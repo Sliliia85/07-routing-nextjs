@@ -22,7 +22,7 @@ export default function NoteList({ tag }: NoteListProps) {
     const activeTag = Array.isArray(tag) ? tag[0] : tag;
     
   
-    return fetchNotes({ tag: activeTag });
+    return fetchNotes({ tags: activeTag });
   },
 });
 
