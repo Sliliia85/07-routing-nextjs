@@ -25,7 +25,7 @@ export default function NotesClient({ activeTag }: NotesClientProps) {
 
   const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
 
- const { data, isLoading, isError } = useQuery({ queryKey: ['notes', activeTag, currentPage, debouncedSearchQuery], queryFn: () => fetchNotes({ page: currentPage, perPage: NOTES_PER_PAGE, search: debouncedSearchQuery, tags: activeTag,  }), placeholderData: (previousData) => previousData, staleTime: 5000, });
+ const { data, isLoading, isError } = useQuery({ queryKey: ['notes', activeTag, currentPage, debouncedSearchQuery], queryFn: () => fetchNotes({ page: currentPage, perPage: NOTES_PER_PAGE, search: debouncedSearchQuery, tag: activeTag,  }), placeholderData: (previousData) => previousData, staleTime: 5000, });
 console.log(data)
   const notes = data?.notes || []; 
   const totalPages = data?.totalPages || 0;
